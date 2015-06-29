@@ -21,6 +21,7 @@ def match_ends(words):
   for word in words:
     if len(word) > 1 and word[0] == word[-1]:
       x+=1
+  #POGI SI ARIAN
   return x
 
 
