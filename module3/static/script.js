@@ -10,6 +10,9 @@ $(function() {
         var list_element = $('<li>');
         list_element.html("Title: " + thesis.thesis_title + ' Year: ' + thesis.thesis_year + ' Abstract: ' + thesis.thesis_abstract + ' Adviser: ' + thesis.thesis_adviser + ' Section: ' + thesis.thesis_section);
         $('.thesis-list').prepend(list_element);
+        $('.text_box').val('');
+        $('.abstract').val('');
+        $('.select').val('');
 
         var thesis_entry_api = '/api/thesis';
         $.post(thesis_entry_api, thesis, function(response){

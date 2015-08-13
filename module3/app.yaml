@@ -1,5 +1,5 @@
 # app.yaml = application config file
-application: module3
+application: pup-dbms-m3-7
 version: 1
 runtime: python27
 api_version: 1

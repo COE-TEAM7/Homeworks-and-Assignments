@@ -1,12 +1,8 @@
-import os
-import cgi
-import urllib
-from google.appengine.api import users
-from google.appengine.ext import ndb
-import logging
-from google.appengine.ext.webapp import template
-import jinja2
 import webapp2
+from google.appengine.ext import ndb
+import jinja2
+import os
+import logging
 import json
 
 

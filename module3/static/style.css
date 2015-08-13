@@ -1,12 +1,11 @@
 body {
   font-family: Verdana;
-  background-color: #0ca3d2;
+  background-color: #bbbbbb;
   text-align: center;
   margin: auto;
 }
 
 .main {
-    width: 400px;
     margin: auto;
 }
 
