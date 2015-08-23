@@ -40,16 +40,29 @@ $(function() {
         $(this).parent().parent().remove();
     }
 
-    function loadThesis(event){
+    function loadThesis2(event){
+        var thesis_list_api = '/api/thesis';
+        $.get(thesis_list_api, {}, function(response){
+            console.log('thesis_list', response);
+            response.data.forEach(function(thesis){
+                var list_element = $('<li>');
+                var entry_name = ('<li class=list>' + thesis.thesis_year + ' ' + thesis.thesis_title + ', Created by: ' + thesis.thesis_author);
+                $(".thesis-list2").prepend(entry_name);
+                })
+        });
+    }
+
+    function loadThesis1(event){
         var thesis_list_api = '/api/thesis';
         $.get(thesis_list_api, {}, function(response){
             console.log('thesis_list', response);
             response.data.forEach(function(thesis){
             	var list_element = $('<li>');
         		var entry_name = ('<li class=list>' + thesis.thesis_year + ' ' + thesis.thesis_title + ', Created by: ' + thesis.thesis_author + ' &nbsp <a href=/api/thesis/delete/' + thesis.id + '><input class=newbtn type=button value=delete></input></a></li>');
-                $(".thesis-list").prepend(entry_name);
+                $(".thesis-list1").prepend(entry_name);
                 })
         });
     }
-    loadThesis();
+    loadThesis1();
+    loadThesis2();
 });
