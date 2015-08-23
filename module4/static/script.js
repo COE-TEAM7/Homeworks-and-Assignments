@@ -18,7 +18,7 @@ $(function() {
         $.post(thesis_entry_api, thesis, function(response){
             if (response.status = 'OK'){
                 // list_element.html(thesis.thesis_year + ' ' +  thesis.thesis_title);
-                 var entry_name = ('<li class=list>' + thesis.thesis_year + ' ' + thesis.thesis_title + ' &nbsp <a href=/api/thesis/delete/' + thesis.id + '><input class=newbtn type=button value=delete></input></a></li>');
+                 var entry_name = ('<li class=list>' + thesis.thesis_year + ' ' + thesis.thesis_title + ', Created by: ' + thesis.thesis_author + ' &nbsp <a href=/api/thesis/delete/' + thesis.id + '>' + 'Created by: ' + '<input class=newbtn type=button value=delete></input></a></li>');
                  $(".thesis-list").prepend(entry_name);
             }else {
                 alert("ERROR");
@@ -31,7 +31,6 @@ $(function() {
     $('.create-form').submit(onFormSubmit)
     $(document).on("click", ".newbtn", deleteThesisInfo)
     $('.submit_form').click(function() {
-
               location.reload();
 
     });
@@ -47,7 +46,7 @@ $(function() {
             console.log('thesis_list', response);
             response.data.forEach(function(thesis){
             	var list_element = $('<li>');
-        		var entry_name = ('<li class=list>' + thesis.thesis_year + ' ' + thesis.thesis_title + ' &nbsp <a href=/api/thesis/delete/' + thesis.id + '><input class=newbtn type=button value=delete></input></a></li>');
+        		var entry_name = ('<li class=list>' + thesis.thesis_year + ' ' + thesis.thesis_title + ', Created by: ' + thesis.thesis_author + ' &nbsp <a href=/api/thesis/delete/' + thesis.id + '><input class=newbtn type=button value=delete></input></a></li>');
                 $(".thesis-list").prepend(entry_name);
                 })
         });

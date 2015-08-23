@@ -16,6 +16,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 class thesisEntry(ndb.Model):
     Title = ndb.StringProperty(indexed = True)
     Adviser = ndb.StringProperty(indexed = True)
+    Created_by = ndb.StringProperty(indexed = True)
     Abstract = ndb.StringProperty(indexed = True)
     Year = ndb.IntegerProperty(indexed = True)
     Section = ndb.IntegerProperty(indexed = True)
@@ -85,11 +86,13 @@ class MainPageHandler(webapp2.RequestHandler):
 
     def post(self):
     	thesis = thesisEntry()
+        user = users.get_current_user()
     	thesis.Title = self.request.get('thesis_title')
     	thesis.Adviser = self.request.get('thesis_adviser')
     	thesis.Abstract = self.request.get('thesis_abstract')
     	thesis.Year = int(self.request.get('thesis_year'))
     	thesis.Section = int(self.request.get('thesis_section'))
+        thesis.Created_by = user.nickname()
     	thesis.put()
 
 class APIThesisDeleteHandler(webapp2.RequestHandler):
@@ -102,12 +105,14 @@ class APIThesisDeleteHandler(webapp2.RequestHandler):
 
 class apiThesis(webapp2.RequestHandler):
     def post(self):
+        user = users.get_current_user()
     	thesis = thesisEntry()
     	thesis.Title = self.request.get('thesis_title')
     	thesis.Adviser = self.request.get('thesis_adviser')
     	thesis.Abstract = self.request.get('thesis_abstract')
     	thesis.Year = int(self.request.get('thesis_year'))
     	thesis.Section = int(self.request.get('thesis_section'))
+        thesis.Created_by = user.nickname()
     	thesis.put()
         self.response.headers['Content-Type'] = 'app/json'
         response = {
@@ -133,7 +138,8 @@ class apiThesis(webapp2.RequestHandler):
                 'thesis_year': t.Year,
                 'thesis_abstract': t.Abstract,
                 'thesis_adviser': t.Adviser,
-                'thesis_section': t.Section
+                'thesis_section': t.Section,
+                'thesis_author':t.Created_by
                 })
         response = {
             'results': 'OK',
