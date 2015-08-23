@@ -1,15 +1,15 @@
 $(function() {
+    var thesis_delete_api = '/api/thesis/delete/(.*)';
     function onFormSubmit(event) {
         var data = $(event.target).serializeArray();
         var thesis = {};
-        for (var i = 0; i < data.length; i++) {
-            var key = data[i].name;
-            var value = data[i].value;
-            thesis[key] = value
+        for(var i = 0; i<data.length ; i++)
+        {
+            thesis[data[i].name] = data[i].value
         }
-        var list_element = $('<li>');
-        list_element.html("Title: " + thesis.thesis_title + ' Year: ' + thesis.thesis_year + ' Abstract: ' + thesis.thesis_abstract + ' Adviser: ' + thesis.thesis_adviser + ' Section: ' + thesis.thesis_section);
-        $('.thesis-list').prepend(list_element);
+        //var list_element = $('<li>');
+        // list_element.html("Title: " + thesis.thesis_title + ' Year: ' + thesis.thesis_year + ' Abstract: ' + thesis.thesis_abstract + ' Adviser: ' + thesis.thesis_adviser + ' Section: ' + thesis.thesis_section);
+        // $('.thesis-list').prepend(list_element);
         $('.text_box').val('');
         $('.abstract').val('');
         $('.select').val('');
@@ -17,13 +17,29 @@ $(function() {
         var thesis_entry_api = '/api/thesis';
         $.post(thesis_entry_api, thesis, function(response){
             if (response.status = 'OK'){
-                list_element.html(thesis.thesis_year + ' ' +  thesis.thesis_title);
+                // list_element.html(thesis.thesis_year + ' ' +  thesis.thesis_title);
+                 var entry_name = ('<li class=list>' + thesis.thesis_year + ' ' + thesis.thesis_title + ' &nbsp <a href=/api/thesis/delete/' + thesis.id + '><input class=newbtn type=button value=delete></input></a></li>');
+                 $(".thesis-list").prepend(entry_name);
+            }else {
+                alert("ERROR");
             }
         });
 
         return false;
     }
+
     $('.create-form').submit(onFormSubmit)
+    $(document).on("click", ".newbtn", deleteThesisInfo)
+    $('.submit_form').click(function() {
+
+              location.reload();
+
+    });
+
+
+    function deleteThesisInfo(event){
+        $(this).parent().parent().remove();
+    }
 
     function loadThesis(event){
         var thesis_list_api = '/api/thesis';
@@ -31,8 +47,8 @@ $(function() {
             console.log('thesis_list', response);
             response.data.forEach(function(thesis){
             	var list_element = $('<li>');
-        		list_element.html(thesis.thesis_year + ' ' + thesis.thesis_title);
-        		$('.thesis-list').prepend(list_element);
+        		var entry_name = ('<li class=list>' + thesis.thesis_year + ' ' + thesis.thesis_title + ' &nbsp <a href=/api/thesis/delete/' + thesis.id + '><input class=newbtn type=button value=delete></input></a></li>');
+                $(".thesis-list").prepend(entry_name);
                 })
         });
     }

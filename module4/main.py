@@ -5,6 +5,7 @@ import os
 import logging
 import json
 from google.appengine.api import users
+import time
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -75,7 +76,7 @@ class loginPage(webapp2.RequestHandler):
             greeting = ('Please <a href="%s">Log in</a> if you want to add an entry to the list.' %
                         users.create_login_url('/'))
 
-        self.response.out.write('<div class="header">%s</div>' % greeting)
+        self.response.out.write('<div class="login">%s</div>' % greeting)
 
 class MainPageHandler(webapp2.RequestHandler):
     def get(self):
@@ -90,6 +91,14 @@ class MainPageHandler(webapp2.RequestHandler):
     	thesis.Year = int(self.request.get('thesis_year'))
     	thesis.Section = int(self.request.get('thesis_section'))
     	thesis.put()
+
+class APIThesisDeleteHandler(webapp2.RequestHandler):
+    def get(self, thesis_id):
+        thesis_key = ndb.Key(urlsafe=thesis_id)
+        thesis = thesis_key.get()
+        thesis.key.delete()
+        time.sleep(0.1)
+        self.redirect('/')
 
 class apiThesis(webapp2.RequestHandler):
     def post(self):
@@ -115,16 +124,16 @@ class apiThesis(webapp2.RequestHandler):
         self.response.out.write(json.dumps(response))
 
     def get(self):
-        thesiss = thesisEntry.query().order(-thesisEntry.Date).fetch()
+        thesis = thesisEntry.query().order(-thesisEntry.Date).fetch()
         thesis_list = []
-        for thesis in thesiss:
+        for t in thesis:
             thesis_list.append({
-                'id':thesis.key.urlsafe(),
-                'thesis_title': thesis.Title,
-                'thesis_year': thesis.Year,
-                'thesis_abstract': thesis.Abstract,
-                'thesis_adviser': thesis.Adviser,
-                'thesis_section': thesis.Section
+                'id':t.key.urlsafe(),
+                'thesis_title': t.Title,
+                'thesis_year': t.Year,
+                'thesis_abstract': t.Abstract,
+                'thesis_adviser': t.Adviser,
+                'thesis_section': t.Section
                 })
         response = {
             'results': 'OK',
@@ -137,5 +146,6 @@ class apiThesis(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
 	('/', loginPage),
     ('/home', MainPageHandler),
-    ('/api/thesis', apiThesis)
+    ('/api/thesis', apiThesis),
+    ('/api/thesis/delete/(.*)', APIThesisDeleteHandler)
 ], debug=True)

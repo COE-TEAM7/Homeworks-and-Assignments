@@ -12,7 +12,7 @@
       <h1 class='form-title'> New Thesis Entry </h1>
         <form class='create-form' method = "post">
             <div class = "year">
-                <select name = "thesis_year" class = "select">
+                <select required name = "thesis_year" class = "select">
                     <option value="" disabled selected>Year</option>
                     <option value = "2011">2011</option>
                     <option value = "2012">2012</option>
@@ -25,13 +25,13 @@
                 <input required class = 'text_box' type ="text" name="thesis_title" placeholder="Thesis Title"/>
             </div>
             <div class = "abstract">
-                <textarea class ="abstract" name = "thesis_abstract" rows = "10" cols = "50" placeholder = "Abstract..."> </textarea>
+                <textarea required class ="abstract" name = "thesis_abstract" rows = "10" cols = "50" placeholder = "Abstract..."> </textarea>
             </div>
             <div class = "adviser">
                 <input required class = 'text_box' type ="text" name="thesis_adviser" placeholder="Adviser"/>
             </div>
             <div class = "section">
-                <select name = "thesis_section" class = "select">
+                <select required name = "thesis_section" class = "select">
                     <option value="" disabled selected>Section</option>
                     <option value = "1">1</option>
                     <option value = "2">2</option>
