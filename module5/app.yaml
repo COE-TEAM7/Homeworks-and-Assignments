@@ -1,0 +1,27 @@
+# app.yaml = application config file
+application: pup-dbms-m5-7
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /static
+  static_dir: static
+
+- url: /.*
+  script: main.app
+
+- url: /secured
+  script: main.app
+  login: required # page is now restricted to signed in users only  
+  auth_fail_action: unauthorized  # display HTTP status code of 401 and an error message
+
+- url: /_ah/login_required
+  script: do_openid_login.app
+
+libraries:
+- name: webapp2
+  version: latest
+- name: jinja2
+  version: latest
