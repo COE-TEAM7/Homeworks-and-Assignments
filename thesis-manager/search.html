@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Search</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+<body>
+		<!-- MASTHEAD -->
+	<div class="blog-masthead">
+		<div class="container">
+        <nav class="blog-nav">
+			<a class="blog-nav-item" href="#">Signed in as {{loggedin_user}} &nbsp; </a>
+			<a class="blog-nav-item" href="#">About &nbsp; </a>
+			<a class="blog-nav-item" href="#">FAQs &nbsp; </a>
+			<a class="blog-nav-item pull-right" href="#">Account</a>
+			<a class="blog-nav-item pull-right" href='{{logout_url}}'>Sign out &nbsp; </a>
+        </nav>
+        </div>
+    </div>
+	<br>
+    <!-- MASTHEAD END-->
+   <!-- NAVIGATION -->
+    <div class="container-main-body">
+    <div class="container">
+		<ul class="nav nav-tabs">
+			<li role='presentation'><a href='/'>Home</a></li>
+			<li role='presentation' class='dropdown active'><a class='dropdown-toggle' data-toggle='dropdown'
+				href='#' role='button' aria-haspopup='true' aria-expanded='false'>List of Theses<span class='caret'></span></a>
+				<ul id='thesis-menu' class='dropdown-menu'>
+				<li><a href='/search'>Search</a></li>
+				<li role='separator' class='divider'></li>
+				</ul>
+			</li>
+			<li role='presentation'><a href='/thesis/create'>Create a Thesis Entry</a></li>
+			<li role='presentation'><a href='/student/create'>Students</a></li>
+			<li role='presentation'><a href='/faculty/create'>Faculty</a></li>
+			<li role='presentation' class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown'
+				href='/university/create' role='button' aria-haspopup='true' aria-expanded='false'>University/Colleges/Departments<span class='caret'></span></a>
+				<ul id='institution-menu' class='dropdown-menu'>
+					<li><a href='/university/create'>Universities</a></li>
+					<li><a href='/college/create'>Colleges</a></li>
+					<li><a href='/department/create'>Departments</a></li>
+					<li role='separator' class='divider'></li>
+					<li><a href='/university/create#university'>Create a University Profile</a></li>
+					<li><a href='/college/create#college'>Create a College Profile</a></li>
+					<li><a href='/department/create#department'>Create a Department Profile</a></li>
+				</ul>
+			</li>
+			<li role='presentation'><a href='/upload'>Upload</a></li>
+		</ul>
+<!-- NAVIGATION END note the extra container DIV -->
+	<div class="row-fluid">
+			<div class="col-sm-8 blog-main">
+
+			  <div class="blog-post">
+				<h2 class="blog-post-title">Search:</h2>
+					<div align='center'>
+							<form class="mysearch">
+							<div class='row'>
+								<div class='col-lg-6'>
+									<div class='input-group'>
+										<input class='form-control' style='margin-bottom: 0px;' type='text' name='search' aria-label='Search' />
+										<span class='input-group-btn'>
+											<button class='btn btn-default' type='submit'>Search</button></span>
+									</div>
+								</div>
+							</div>
+							</form>
+					</div>
+					<div align='left'>
+						<h4>Results:</h4>
+						<hr>
+					<ul class='stls'></ul>
+					</div>
+					</div>
+			  </div><!-- /.blog-post -->
+		  </div>
+		</div>
+		</div>
+		</div>
+	<br>
+	<br>
+	<br>
+	<br>
+    <script type="text/javascript" src="/static/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/search.js"></script>
+    <script type="text/javascript" src="/static/list.js"></script>
+</body>
+</html>

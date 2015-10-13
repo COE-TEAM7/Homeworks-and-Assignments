@@ -1,0 +1,118 @@
+	.blog-footer {
+		padding: 40px 0px;
+		color: #999;
+		text-align: center;
+		background-color: #EEEEEE;
+		border-top: 1px solid #E5E5E5;
+	}
+	.blog-masthead{
+		padding: 10px 0px;
+		background-image: -moz-linear-gradient(top, #D00000, #A20000);
+		background-image: -ms-linear-gradient(top, #D00000, #A20000);
+		background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#D00000), to(#A20000));
+		background-image: -webkit-linear-gradient(top, #D00000, #A20000);
+		background-image: -o-linear-gradient(top, #D00000, #A20000);
+		background-image: linear-gradient(top, #D00000, #A20000);
+		background-repeat: repeat-x;
+	}
+	
+	.blog-nav-item{
+		color: #EEEEEE;
+	}
+	
+	.nav{
+		border-top: 1px solid #EC6D6D;
+		border-bottom: 1px solid #670000;
+		border-left: 1px solid #670000;
+		border-right: 1px solid #670000;
+		border-radius: 2px;
+	}
+	
+	.nav-tabs > li >a{
+		color: #EEEEEE;
+	}
+	
+	.nav-tabs > .active > a{
+		color: #000000;
+	}
+	
+	.nav-tabs > li >a:hover{
+		color: #000000;
+		border-color: #ED4747;
+		background-color: #ED4747;
+	}
+	.container-main-body > .container{
+		padding-top: 20px;
+		padding-right: 5px;
+		padding-bottom: 20px;
+		padding-left: 5px;
+		border: 2px solid #E2E2E2;
+		border-radius: 5px;
+		background-color: #F5F5F5;
+	}
+	
+	.row-fluid{
+		margin: auto;
+		width: 80%;
+	}
+	
+	.nav-tabs{
+		background-image: -moz-linear-gradient(top, #D00000, #A20000);
+		background-image: -ms-linear-gradient(top, #D00000, #A20000);
+		background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#D00000), to(#A20000));
+		background-image: -webkit-linear-gradient(top, #D00000, #A20000);
+		background-image: -o-linear-gradient(top, #D00000, #A20000);
+		background-image: linear-gradient(top, #D00000, #A20000);
+		background-repeat: repeat-x;
+	}
+	
+	#form-divider {
+		margin: auto;
+		width: 75%;
+	}
+	
+	#form-divider > form > div > input {
+		width: 60%;
+	}
+	
+	#form-divider > form > div > select {
+		width: 60%;
+	}
+	
+	#form-divider > form > div > textarea {
+		padding: 10px;
+		width: 500px;
+	}
+	
+	hr{
+		border-style: solid 2px ;
+		border-color: #E4A4A4;
+	}
+	
+	.nav .dropdown-toggle .caret{
+		border-top-color: #EEEEEE;
+	}
+	
+	.ec-comment-form {
+		margin: auto;
+		width: 80%;
+	}
+	
+	legend > .title {
+		margin: auto;
+		width: 50%;
+	}
+	
+	fieldset{
+		margin: auto;
+		width: 80%;
+	}
+	
+	.navbar .brand, .nav-tabs .nav > li > a:hover, .navbar .brand, .nav-tabs .nav > li > a:focus {
+    background-color: #977EBD;
+    color: #FFFFFF;
+}
+	
+	body{
+		background: url('/static/paper-texture.jpg') repeat;
+	}

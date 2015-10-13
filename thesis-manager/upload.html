@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Upload</title>
+	<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+<body>
+	<!-- MASTHEAD -->
+	<div class="blog-masthead">
+		<div class="container">
+        <nav class="blog-nav">
+			<a class="blog-nav-item" href="#">Signed in as {{loggedin_user}} &nbsp; </a>
+			<a class="blog-nav-item" href="#">About &nbsp; </a>
+			<a class="blog-nav-item" href="#">FAQs &nbsp; </a>
+			<a class="blog-nav-item pull-right" href="#">Account</a>
+			<a class="blog-nav-item pull-right" href='{{logout_url}}'>Sign out &nbsp; </a>
+        </nav>
+        </div>
+    </div>
+	<br>
+    <!-- MASTHEAD END-->
+    <!-- NAVIGATION -->
+    <div class="container-main-body">
+    <div class="container">
+		<ul class="nav nav-tabs">
+			<li role='presentation'><a href='/'>Home</a></li>
+			<li role='presentation' class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown'
+				href='thesis/index' role='button' aria-haspopup='true' aria-expanded='false'>List of Theses<span class='caret'></span></a>
+				<ul id='thesis-menu' class='dropdown-menu'>
+				<li><a href='/search'>Search</a></li>
+				<li role='separator' class='divider'></li>
+				</ul>
+			</li>
+			<li role='presentation'><a href='/thesis/create'>Create a Thesis Entry</a></li>
+			<li role='presentation'><a href='/student/create'>Students</a></li>
+			<li role='presentation'><a href='/faculty/create'>Faculty</a></li>
+			<li role='presentation' class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown'
+				href='/university/create' role='button' aria-haspopup='true' aria-expanded='false'>University/Colleges/Departments<span class='caret'></span></a>
+				<ul id='institution-menu' class='dropdown-menu'>
+					<li><a href='/university/create'>Universities</a></li>
+					<li><a href='/college/create'>Colleges</a></li>
+					<li><a href='/department/create'>Departments</a></li>
+					<li role='separator' class='divider'></li>
+					<li><a href='/university/create#university'>Create a University Profile</a></li>
+					<li><a href='/college/create#college'>Create a College Profile</a></li>
+					<li><a href='/department/create#department'>Create a Department Profile</a></li>
+				</ul>
+			</li>
+			<li role='presentation' class='active'><a href='#'>Upload</a></li>
+		</ul>
+<!-- NAVIGATION END note the extra container DIV -->
+	<div class="row-fluid">
+		<div class="col-sm-8 blog-main">
+
+          <div class="blog-post">
+            <h2 class="blog-post-title">Select File:</h2>
+            	<hr>
+            	<form class="navbar-form navbar-left" role="search" action='{{upload_url}}' method="POST" enctype="multipart/form-data">
+					<input style='height: 100%;' type="submit" name="submit" value="Upload">. . . . . . . . . . . . . . . . 
+					<input style='height: 100%;' type="file" name="file"> 
+				</form>
+				<hr>
+				<h3>Guidelines</h3>
+				<p>Please be informed that the CSV (comma separated value) file should adhere strictly to the following rules:</p>
+				<ol>
+				<li>The csv should be separated by commas (',')</li>
+				<li>The column headers are case sensitve and please, follow the naming scheme: 
+					<ul>University, College, Department, Year, Title, Abstract, Section, Adviser, Member 1, Member 2, Member 3, Member 4, Member 5</ul>
+					 </li>
+				<li>The names of the persons in the should be in the order of first name and last name. Middle names are not yet implemented.</li>
+				<li>Universities should be written in full. Colleges need only it's designation, i.e. Engineering for the College of Engineering</li>
+				<li>Departments should be written in full, i.e. Computer Engineering</li>
+				</ol>
+          </div><!-- /.blog-post -->
+	  </div>
+	</div>
+	</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<script type="text/javascript" src="/static/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/list.js"></script>
+</body>
+</html>

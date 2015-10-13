@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+<body>
+	<div class="blog-masthead">
+		<div class="container">
+        <nav class="blog-nav">
+			<a class="blog-nav-item" href="#">Signed in as {{loggedin_user}} &nbsp; </a>
+			<a class="blog-nav-item" href="#">About &nbsp; </a>
+			<a class="blog-nav-item" href="#">FAQs &nbsp; </a>
+			<a class="blog-nav-item pull-right" href="#">Account</a>
+			<a class="blog-nav-item pull-right" href='{{logout_url}}'>Sign out &nbsp; </a>
+        </nav>
+        </div>
+    </div>
+    <br>
+    <div class="container-main-body">
+    <div class="container">
+		<ul class="nav nav-tabs">
+			<li role='presentation' class='active'><a href='#'>Home</a></li>
+			<li role='presentation' class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown'
+				href='thesis/index' role='button' aria-haspopup='true' aria-expanded='false'>List of Theses<span class='caret'></span></a>
+				<ul id='thesis-menu' class='dropdown-menu'>
+				<li><a href='/search'>Search</a></li>
+				<li role='separator' class='divider'></li>
+				</ul>
+			</li>
+			<li role='presentation'><a href='/thesis/create'>Create a Thesis Entry</a></li>
+			<li role='presentation'><a href='/student/create'>Students</a></li>
+			<li role='presentation'><a href='/faculty/create'>Faculty</a></li>
+			<li role='presentation' class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown'
+				href='/university/create' role='button' aria-haspopup='true' aria-expanded='false'>University/Colleges/Departments<span class='caret'></span></a>
+				<ul id='institution-menu' class='dropdown-menu'>
+					<li><a href='/university/create'>Universities</a></li>
+					<li><a href='/college/create'>Colleges</a></li>
+					<li><a href='/department/create'>Departments</a></li>
+					<li role='separator' class='divider'></li>
+					<li><a href='/university/create#university'>Create a University Profile</a></li>
+					<li><a href='/college/create#college'>Create a College Profile</a></li>
+					<li><a href='/department/create#department'>Create a Department Profile</a></li>
+				</ul>
+			</li>
+			<li role='presentation'><a href='/upload'>Upload</a></li>
+		</ul>
+
+	<div class="row-fluid">
+		<div class="col-sm-8 blog-main">
+
+          <div class="blog-post">
+            <h2 class="blog-post-title">Thesis Manager</h2>
+            <p class="blog-post-meta">October 12, 2015 by <a href="#">Justin</a></p>
+
+            <p>The making of this site would not be possible without the follwing:</p>
+            <hr>
+            <h2>First Post</h2>
+            <h3>Stackoverflow.com</h3>
+            <p>All the wonderful and generous users at <a href="stackoverflow.com">Stackoverflow.com</a>.</p>
+            <blockquote>
+              <p>Stack Overflow is a question and answer site for professional and enthusiast programmers. It's built and run by you as part of the Stack Exchange network of Q&A sites. With your help, we're working together to build a library of detailed answers to every question about programming.</p>
+            </blockquote>
+            <hr>
+            <h3>W3Schools.com</h3>
+            <p>The people who made W3Schools</p>
+            <blockquote>
+              <p>W3Schools is a web developers site, with tutorials and references on web development languages such as HTML, CSS, JavaScript, PHP, SQL, and JQuery, covering most aspects of web programming.
+				The site derives its name from the World Wide Web (W3), but is not affiliated with the W3C. W3Schools was originally created in 1998, by Refsnes Data, a Norwegian software development and consulting company.</p>
+            </blockquote>
+            <hr>
+            <h3>GetBootStrap.com</h3>
+            <p>The geniuses behind a mind-numbingly good CSS framework, BootStrap</p>
+			<blockquote>
+              <p>Bootstrap easily and efficiently scales your websites and applications with a single code base, from phones to tablets to desktops with CSS media queries.</p>
+            </blockquote>
+            <hr>
+            <h3>Python</h3>
+            <p>The guy who thought of making this simple yet complex programming language</p>
+			<blockquote>
+              <p>Python is a programming language that lets you work more quickly and integrate your systems more effectively.You can learn to use Python and see almost immediate gains in productivity and lower maintenance costs.</p>
+            </blockquote>
+            
+          </div><!-- /.blog-post -->
+	  </div>
+	</div>
+	</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+<script type="text/javascript" src="/static/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/static/list.js"></script>
+</body>
+</html>

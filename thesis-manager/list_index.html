@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>List Index</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="/static/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/list.js"></script>
+    
+</head>
+<body>
+			Hello {{loggedin_user}}!
+	<div align='center'>
+		<h1 class='main'>Thesis List Index</h1>
+	</div>
+
+<div align='center'><a href='/thesis/list/all/all	'>All</a></div><br>
+<div class='index'></div>
+
+<br>
+<br>
+<br>
+<div align='center'><a href='{{logout_url}}'><input type="button" value="Logout"></input></a></div><br>
+<div align='center'><a href='/'><input type="button" value="Back to Home" ></input></a></div>
+</body>
+</html>

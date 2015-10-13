@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" href="/chosen/chosen.css">
+</head>
+<body>
+	<!-- MASTHEAD -->
+	<div class="blog-masthead">
+		<div class="container">
+        <nav class="blog-nav">
+			<a class="blog-nav-item" href="#">Signed in as {{loggedin_user}} &nbsp; </a>
+			<a class="blog-nav-item" href="#">About &nbsp; </a>
+			<a class="blog-nav-item" href="#">FAQs &nbsp; </a>
+			<a class="blog-nav-item pull-right" href="#">Account</a>
+			<a class="blog-nav-item pull-right" href='{{logout_url}}'>Sign out &nbsp; </a>
+        </nav>
+        </div>
+    </div>
+	<br>
+    <!-- MASTHEAD END-->
+    <!-- NAVIGATION -->
+    <div class="container-main-body">
+		<div class="container">
+			<ul class="nav nav-tabs nav-justified">
+				<li role='presentation'><a href='/'>Home</a></li>
+				<li role='presentation' class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown'
+					href='#' role='button' aria-haspopup='true' aria-expanded='false'>List of Theses<span class='caret'></span></a>
+					<ul id='thesis-menu' class='dropdown-menu'>
+					<li><a href='/search'>Search</a></li>
+					<li role='separator' class='divider'></li>
+					<li><a href='/thesis/list/year'>List by Year</a></li>
+					<li role='separator' class='divider'></li>
+					<li><a href='/thesis/list/adviser'>List by Adviser</a></li>
+					<li role='separator' class='divider'></li>
+					<li><a href='/thesis/list/university'>List by University</a></li>
+					</ul>
+				</li>
+				<li role='presentation'><a href='/thesis/create'>Create a Thesis Entry</a></li>
+				<li role='presentation' class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown'
+					href='#' role='button' aria-haspopup='true' aria-expanded='false'>Students<span class='caret'></span></a>
+					<ul class='dropdown-menu'>
+					<li><a href='/student/list'>List of Students</a></li>
+					<li role='separator' class='divider'></li>
+					<li><a href='/student/create'>Create a Student Profile</a></li>
+					</ul>
+				<li role='presentation' class='dropdown active'><a class='dropdown-toggle' data-toggle='dropdown'
+					href='#' role='button' aria-haspopup='true' aria-expanded='false'>Faculty<span class='caret'></span></a>
+					<ul class='dropdown-menu'>
+					<li><a href='/faculty/list'>List of Faculty</a></li>
+					<li role='separator' class='divider'></li>
+					<li><a href='/faculty/create'>Create a Faculty Profile</a></li>
+					</ul>
+				<li role='presentation' class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown'
+					href='/university/create' role='button' aria-haspopup='true' aria-expanded='false'>Institutions<span class='caret'></span></a>
+					<ul id='institution-menu' class='dropdown-menu'>
+						<li><a href='/university/create'>Universities</a></li>
+						<li><a href='/college/create'>Colleges</a></li>
+						<li><a href='/department/create'>Departments</a></li>
+						<li role='separator' class='divider'></li>
+						<li><a href='/university/create#university'>Create a University Profile</a></li>
+						<li><a href='/college/create#college'>Create a College Profile</a></li>
+						<li><a href='/department/create#department'>Create a Department Profile</a></li>
+					</ul>
+				</li>
+				<li role='presentation'><a href='/upload'>Upload</a></li>
+			</ul>
+			<!-- NAVIGATION END note the extra container DIV -->
+				<div class="row-fluid">
+					<div class="col-sm-8 blog-main">
+						<div class="blog-post">
+							<h2 class="blog-post-title">New Faculty Profile:</h2>
+							<hr>
+							<div id='form-divider'>
+							<form class='faculty_form' method='post' action='/api/faculty'>
+								First Name:
+								<div align='center'><input type='text' name='first_name' placeholder='First Name' required /></div><br>
+								Last Name:
+								<div align='center'><input type='text' name='last_name' placeholder='Last Name' required /></div><br>
+								Department:
+								<div align='center'><select class='chosen-select' id='select_dept' name='department' required></select></div><br>
+								Email:
+								<div align='center'><input type='text' name='email' placeholder='Email' /></div><br>
+								Phone Number:
+								<div align='center'><input type='text' name='phone_number' placeholder='Phone Number' /></div><br>
+								Birthdate:
+								<div align='center'><input type='text' name='birthdate' placeholder='ex: 1-1-1994 MM-DD-YYYY' /></div><br>
+								<div align='center'><input type='submit' value='Submit'></input></div>
+							</form>
+							</div>
+						  </div><!-- /.blog-post -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<script type="text/javascript" src="/static/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/script.js"></script>
+    <script type="text/javascript" src="/chosen/chosen.jquery.min.js"></script>
+</body>
+</html>

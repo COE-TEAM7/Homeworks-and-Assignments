@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Details</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" href="/chosen/chosen.css">
+</head>
+<body>
+	<!-- MASTHEAD -->
+	<div class="blog-masthead">
+		<div class="container">
+        <nav class="blog-nav">
+			<a class="blog-nav-item" href="#">Signed in as {{loggedin_user}} &nbsp; </a>
+			<a class="blog-nav-item" href="#">About &nbsp; </a>
+			<a class="blog-nav-item" href="#">FAQs &nbsp; </a>
+			<a class="blog-nav-item pull-right" href="#">Account</a>
+			<a class="blog-nav-item pull-right" href='{{logout_url}}'>Sign out &nbsp; </a>
+        </nav>
+        </div>
+    </div>
+	<br>
+    <!-- MASTHEAD END-->
+    <br>
+	<div class="container-main-body">
+		<div class="container">
+			<ul class="nav nav-tabs nav-justified">
+				<li role='presentation'><a href='/'>Home</a></li>
+				<li role='presentation' class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown'
+					href='#' role='button' aria-haspopup='true' aria-expanded='false'>List of Theses<span class='caret'></span></a>
+					<ul id='thesis-menu' class='dropdown-menu'>
+					<li><a href='/search'>Search</a></li>
+					<li role='separator' class='divider'></li>
+					<li><a href='/thesis/list/year'>List by Year</a></li>
+					<li role='separator' class='divider'></li>
+					<li><a href='/thesis/list/adviser'>List by Adviser</a></li>
+					<li role='separator' class='divider'></li>
+					<li><a href='/thesis/list/university'>List by University</a></li>
+					</ul>
+				</li>
+				<li role='presentation'><a href='/thesis/create'>Create a Thesis Entry</a></li>
+				<li role='presentation' class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown'
+					href='#' role='button' aria-haspopup='true' aria-expanded='false'>Students<span class='caret'></span></a>
+					<ul class='dropdown-menu'>
+					<li><a href='/student/list'>List of Students</a></li>
+					<li role='separator' class='divider'></li>
+					<li><a href='/student/create'>Create a Student Profile</a></li>
+					</ul>
+				<li role='presentation' class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown'
+					href='#' role='button' aria-haspopup='true' aria-expanded='false'>Faculty<span class='caret'></span></a>
+					<ul class='dropdown-menu'>
+					<li><a href='/student/list'>List of Faculty</a></li>
+					<li role='separator' class='divider'></li>
+					<li><a href='/student/list'>Create a Faculty Profile</a></li>
+					</ul>
+				<li role='presentation' class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown'
+					href='/university/create' role='button' aria-haspopup='true' aria-expanded='false'>Institutions<span class='caret'></span></a>
+					<ul id='institution-menu' class='dropdown-menu'>
+						<li><a href='/university/create'>Universities</a></li>
+						<li><a href='/college/create'>Colleges</a></li>
+						<li><a href='/department/create'>Departments</a></li>
+						<li role='separator' class='divider'></li>
+						<li><a href='/university/create#university'>Create a University Profile</a></li>
+						<li><a href='/college/create#college'>Create a College Profile</a></li>
+						<li><a href='/department/create#department'>Create a Department Profile</a></li>
+					</ul>
+				</li>
+				<li role='presentation'><a href='/upload'>Upload</a></li>
+			</ul>
+		<!-- NAVIGATION END note the extra container DIV -->
+		<div class="row-fluid">
+			<div class="col-sm-8 blog-main">
+
+				<div class="blog-post">
+					<h2 class="blog-post-title">{{d_title}}</h2>
+					<p class="blog-post-meta">Finished in {{d_year}}</p>
+
+					<p>{{d_university}}: College of {{d_college}}, {{d_dept}}</p>
+					<hr>
+					<h2>Details</h2>
+					<h3>Abstract:</h3>
+
+					<blockquote>
+					<p>{{d_abstract}}</p>
+					</blockquote>
+
+					<h4>Adviser</h4>
+					<p><a href='/faculty/{{d_adviser_id}}'>{{d_adviser}}</a></p>
+
+					<h4>Proponents</h4>
+					<ol id='_members'></ol>
+					<h3>Tags</h3>
+					<ul id='_tags'>
+					{% for mem in d_tags %}
+					<li>{{mem}}</li>
+					{% endfor %}
+					</ul>
+					
+					<p>This entry was created by {{d_created_by}} on {{d_created_on}}.</p>
+					<hr>
+					<h3>Related Thesis</h3>
+					<ul class='stls'></ul>
+					<br>
+				<div id='easy-comment'></div>
+				</div><!-- /.blog-post -->
+			</div>
+		</div>
+		</div>
+	</div>
+	</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<script type="text/javascript" src="/static/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/easy-comment/jquery.easy-comment.js"></script>
+    <script type="text/javascript" src="/static/script.js"></script>
+    <script type="text/javascript" src="/chosen/chosen.jquery.min.js"></script>
+	<script type="text/javascript" src="/static/list.js"></script>
+	<script type="text/javascript">
+	function loadProponents(event){
+		var thesis_search_api = '/api/thesis/proponents/';
+		var thesis = '{{thesis_id}}';
+		thesis_search_api = thesis_search_api + thesis;
+		$.get(thesis_search_api, {}, function(response) {
+			response.students.forEach(function(s) {
+					var entry_name = ('<li><a href=/student/'+ s.student_id +'>'+ s.student_name+'</a></li>');
+					$("#_members").prepend(entry_name);
+				});
+			});
+	}
+	
+	function loadThesisEntries(event){
+		var thesis_search_api = '/api/thesis/related/';
+		var thesis = '{{thesis_id}}';
+		thesis_search_api = thesis_search_api + thesis;
+		$.get(thesis_search_api, {}, function(response) {
+				response.data.forEach(function(t) {
+					var entry_name = ('<li class=search-list> &nbsp <a href=/thesis/details/' + t.id + '>'+ t.year + ' ' + t.title + '</a> '+
+					' &nbsp <p><a href=/thesis/edit/' + t.id + '>Edit</a> &nbsp <a href=/thesis/delete/' + t.id + '>Delete</a> &nbsp Created by:' + t.created_by + '</p></li>');
+					$(".stls").prepend(entry_name);
+				});
+			});
+	}
+		
+	$(document).ready(loadThesisEntries);
+	$(document).ready(loadProponents);
+	
+	jQuery(document).ready(function(){
+		$("#easy-comment").EasyComment({
+		  path:"/easy-comment/", //Change it to the folder where you put the easycomment files
+		  moderate:false,
+		  maxReply:2,
+		  countPerPage: 10
+		});
+	});
+	</script>
+</body>
+</html>

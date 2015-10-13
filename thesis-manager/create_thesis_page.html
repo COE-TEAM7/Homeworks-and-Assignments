@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" href="/chosen/chosen.css">
+</head>
+<body>
+	<!-- MASTHEAD -->
+	<div class="blog-masthead">
+		<div class="container">
+        <nav class="blog-nav">
+			<a class="blog-nav-item" href="#">Signed in as {{loggedin_user}} &nbsp; </a>
+			<a class="blog-nav-item" href="#">About &nbsp; </a>
+			<a class="blog-nav-item" href="#">FAQs &nbsp; </a>
+			<a class="blog-nav-item pull-right" href="#">Account</a>
+			<a class="blog-nav-item pull-right" href='{{logout_url}}'>Sign out &nbsp; </a>
+        </nav>
+        </div>
+    </div>
+	<br>
+    <!-- MASTHEAD END-->
+    <!-- NAVIGATION -->
+    <div class="container-main-body">
+    <div class="container">
+		<ul class="nav nav-tabs">
+			<li role='presentation'><a href='/'>Home</a></li>
+			<li role='presentation' class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown'
+				href='thesis/index' role='button' aria-haspopup='true' aria-expanded='false'>List of Theses<span class='caret'></span></a>
+				<ul id='thesis-menu' class='dropdown-menu'>
+				<li><a href='/search'>Search</a></li>
+				<li role='separator' class='divider'></li>
+				</ul>
+			</li>
+			<li role='presentation' class='active'><a href='/thesis/create'>Create a Thesis Entry</a></li>
+			<li role='presentation'><a href='/student/create'>Students</a></li>
+			<li role='presentation'><a href='/faculty/create'>Faculty</a></li>
+			<li role='presentation' class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown'
+				href='/university/create' role='button' aria-haspopup='true' aria-expanded='false'>University/Colleges/Departments<span class='caret'></span></a>
+				<ul id='institution-menu' class='dropdown-menu'>
+					<li><a href='/university/create'>Universities</a></li>
+					<li><a href='/college/create'>Colleges</a></li>
+					<li><a href='/department/create'>Departments</a></li>
+					<li role='separator' class='divider'></li>
+					<li><a href='/university/create#university'>Create a University Profile</a></li>
+					<li><a href='/college/create#college'>Create a College Profile</a></li>
+					<li><a href='/department/create#department'>Create a Department Profile</a></li>
+				</ul>
+			</li>
+			<li role='presentation'><a href='/upload'>Upload</a></li>
+		</ul>
+		<!-- NAVIGATION END note the extra container DIV -->
+		<div class="row-fluid">
+		<div class="col-sm-8 blog-main">
+
+          <div class="blog-post">
+            <h2 class="blog-post-title">New Thesis Entry:</h2>
+			<hr>
+			<div id='form-divider'>
+			<form id='create_thesis'>
+				Title:
+				<div align='center'><input type='text' name='title' placeholder='Title' required /></div><br>
+				Abstract:
+				<div align='center'><textarea rows='10' name='abstract' placeholder='Abstract'></textarea></div><br>
+				Year Completed:
+				<div align='center'><select data-placeholder="Select a year..." class="chosen-select" id='select_year' required name='year'></select></div>
+				Adviser:		
+				<div align='center'><select data-placeholder="Select a an adviser..."  class="chosen-select"id='select_adviser' name='adviser' required></select></div>
+				Proponents:
+				<div align='center'><select data-placeholder="Select the proponents..."  multiple class="chosen-select"id='select_members' name='members' multiple required></select></div>
+				Department:
+				<div align='center'><select data-placeholder="Select a department" class="chosen-select"id='select_dept' name='department'></select></div>
+				Section:
+				<div align='center'><select data-placeholder="Select a section" class="chosen-select" id='select_section' name='section'></select></div><br>
+				Keywords
+				<div align='center'><input type='text'name='keywords' placeholder='Keywords' /></div><h6>*separate with comma</h6><br>
+				<br>
+				<div align='center'><input type='submit' value='Submit'></input></div>
+			</form>
+			</div>
+          </div><!-- /.blog-post -->
+	  </div>
+	</div>
+	</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<script type="text/javascript" src="/static/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/script.js"></script>
+    <script type="text/javascript" src="/chosen/chosen.jquery.min.js"></script>
+</body>
+</html>

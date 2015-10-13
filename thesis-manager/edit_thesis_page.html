@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edit</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" href="/chosen/chosen.css">
+</head>
+<body>
+	<!-- MASTHEAD -->
+	<div class="blog-masthead">
+		<div class="container">
+        <nav class="blog-nav">
+			<a class="blog-nav-item" href="#">Signed in as {{loggedin_user}} &nbsp; </a>
+			<a class="blog-nav-item" href="#">About &nbsp; </a>
+			<a class="blog-nav-item" href="#">FAQs &nbsp; </a>
+			<a class="blog-nav-item pull-right" href="#">Account</a>
+			<a class="blog-nav-item pull-right" href='{{logout_url}}'>Sign out &nbsp; </a>
+        </nav>
+        </div>
+    </div>
+	<br>
+    <!-- MASTHEAD END-->
+    <!-- NAVIGATION -->
+    <div class="container-main-body">
+    <div class="container">
+		<ul class="nav nav-tabs">
+			<li role='presentation'><a href='/'>Home</a></li>
+			<li role='presentation' class='dropdown active'><a class='dropdown-toggle' data-toggle='dropdown'
+				href='#' role='button' aria-haspopup='true' aria-expanded='false'>List of Theses<span class='caret'></span></a>
+				<ul id='thesis-menu' class='dropdown-menu'>
+				<li><a href='/search'>Search</a></li>
+				<li role='separator' class='divider'></li>
+				</ul>
+			</li>
+			<li role='presentation'><a href='/thesis/create'>Create a Thesis Entry</a></li>
+			<li role='presentation'><a href='/student/create'>Students</a></li>
+			<li role='presentation'><a href='/faculty/create'>Faculty</a></li>
+			<li role='presentation' class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown'
+				href='/university/create' role='button' aria-haspopup='true' aria-expanded='false'>University/Colleges/Departments<span class='caret'></span></a>
+				<ul id='institution-menu' class='dropdown-menu'>
+					<li><a href='/university/create'>Universities</a></li>
+					<li><a href='/college/create'>Colleges</a></li>
+					<li><a href='/department/create'>Departments</a></li>
+					<li role='separator' class='divider'></li>
+					<li><a href='/university/create#university'>Create a University Profile</a></li>
+					<li><a href='/college/create#college'>Create a College Profile</a></li>
+					<li><a href='/department/create#department'>Create a Department Profile</a></li>
+				</ul>
+			</li>
+			<li role='presentation'><a href='/upload'>Upload</a></li>
+		</ul>
+		<!-- NAVIGATION END note the extra container DIV -->
+
+	<div class="row-fluid">
+		<div class="col-sm-8 blog-main">
+
+          <div class="blog-post">
+            <h2 class="blog-post-title">Edit Entry:</h2>
+            <p><h4>{{or_title}}</h4></p>
+			<hr>
+			<div id='form-divider'>
+			<form id='edit_thesis'>
+				Title:
+				<div align='center'><input type='text' name='title' value='{{or_title}}'required /></div><br>
+				Abstract:
+				<div align='center'><textarea rows='10' name='abstract' >{{or_abstract}}</textarea></div><br>
+				Year Completed:
+				<div align='center'><select data-placeholder="Select a year..." class='chosen-select' id='edit_year' name='year' required></select></div><br>
+				Adviser:
+				<div align='center'><select data-placeholder="Select the adviser..." class='chosen-select' id='edit_adviser' name='adviser' required></select></div><br>
+				Proponents:
+				<div align='center'><select data-placeholder="Select the proponents..." class='chosen-select' id='edit_members' name='members' multiple required></select></div><br>
+				Section:
+				<div align='center'><select data-placeholder="Select a section..." class='chosen-select' id='edit_section' name='section'></select></div><br>
+				Department:
+				<div align='center'><select data-placeholder="Select a department..." class='chosen-select' id='edit_dept' name='department'></select></div><br>
+				Keywords:
+				<div align='center'><select data-placeholder="Select tags..." class='chosen-select' id='edit_tags' name='tags'/></div><br>
+				<div align='center'><input type='submit' value='Submit'></input></div>
+			</form>
+			</div>
+          </div><!-- /.blog-post -->
+	  </div>
+	</div>
+	</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+
+<script type="text/javascript" src="/static/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/script.js"></script>
+    <script type="text/javascript">
+	$(function(){
+		function loadEditEntries(event){
+			var thesis_detail_api = '/api/thesis/form';
+			$.get(thesis_detail_api, {}, function(response) {
+				var year_now = new Date().getFullYear();
+			for (var yr = 2010; yr <= year_now; yr++){
+				if (yr == '{{or_year}}') {$('#edit_year').append($('<option selected/>').text(yr).val(yr));}
+				else {$('#edit_year').append($('<option/>').text(yr).val(yr));}
+			}
+			for (var sec = 1; sec <= 5; sec++){
+				if (sec == '{{or_section}}') {$('#edit_section').append($('<option selected/>').text(sec).val(sec));}
+				else {$('#edit_section').append($('<option/>').text(sec).val(sec));}
+			}
+			response.advisers.forEach(function(adv) {
+				if (adv.adviser_name === '{{or_adviser}}') $('#edit_adviser').append($('<option selected/>').text(adv.adviser_name).val(adv.adviser_id));
+				else $('#edit_adviser').append($('<option/>').text(adv.adviser_name).val(adv.adviser_id));
+				});
+			response.departments.forEach(function(d) {
+				if (d.dept_name === '{{or_dept}}') $('#edit_dept').append($('<option selected/>').text(d.dept_name).val(d.dept_id));
+				else $('#edit_dept').append($('<option/>').text(d.dept_name).val(d.dept_id));
+				});
+			response.students.forEach(function(s) {
+					if (s.student_name == '{{mem}}') $('#edit_members').append($('<option selected/>').text(s.student_name).val(s.student_id));
+					else $('#edit_members').append($('<option/>').text(s.student_name).val(s.student_id)); 
+				});
+				$(".chosen-select").chosen({no_results_text: "None found!"});
+			});
+			
+		}
+		
+		function onFormEditSubmit(event){
+			var thesis_edit_api = '/api/thesis/edit/' + '{{thesis_id}}';
+			var data = $(event.target).serializeArray();
+			var thesis = {};
+			var a = 0;
+			var b = 0;
+			for(var i = 0; i<data.length ; i++)
+			{
+				if (data[i].name === 'members'){
+					thesis[data[i].name + a] = data[i].value;
+					a = a + 1;
+				}
+				else if (data[i].name === 'tags'){
+					thesis[data[i].name + b] = data[i].value;
+					b = b + 1;
+				}
+				else {
+					thesis[data[i].name] = data[i].value;
+				}
+			}
+			$.post(thesis_edit_api, thesis, function(){
+					//~ $("input[type=text], [type=number], textarea").val("")
+			})
+			return false;
+		}
+		
+		loadEditEntries();
+		$("#edit_thesis").submit(onFormEditSubmit);
+	});
+    </script>
+    <script type="text/javascript" src="/chosen/chosen.jquery.min.js"></script>
+</body>
+</html>

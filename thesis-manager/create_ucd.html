@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" href="/chosen/chosen.css">
+</head>
+<body>
+		<!-- MASTHEAD -->
+	<div class="blog-masthead">
+		<div class="container">
+        <nav class="blog-nav">
+			<a class="blog-nav-item" href="#">Signed in as {{loggedin_user}} &nbsp; </a>
+			<a class="blog-nav-item" href="#">About &nbsp; </a>
+			<a class="blog-nav-item" href="#">FAQs &nbsp; </a>
+			<a class="blog-nav-item pull-right" href="#">Account</a>
+			<a class="blog-nav-item pull-right" href='{{logout_url}}'>Sign out &nbsp; </a>
+        </nav>
+        </div>
+    </div>
+	<br>
+    <!-- MASTHEAD END-->
+     <div class="container-main-body">
+		<div class="container">
+			<ul class="nav nav-tabs nav-justified">
+				<li role='presentation'><a href='/'>Home</a></li>
+				<li role='presentation' class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown'
+					href='#' role='button' aria-haspopup='true' aria-expanded='false'>List of Theses<span class='caret'></span></a>
+					<ul id='thesis-menu' class='dropdown-menu'>
+					<li><a href='/search'>Search</a></li>
+					<li role='separator' class='divider'></li>
+					<li><a href='/thesis/list/year'>List by Year</a></li>
+					<li role='separator' class='divider'></li>
+					<li><a href='/thesis/list/adviser'>List by Adviser</a></li>
+					<li role='separator' class='divider'></li>
+					<li><a href='/thesis/list/university'>List by University</a></li>
+					</ul>
+				</li>
+				<li role='presentation'><a href='/thesis/create'>Create a Thesis Entry</a></li>
+				<li role='presentation' class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown'
+					href='#' role='button' aria-haspopup='true' aria-expanded='false'>Students<span class='caret'></span></a>
+					<ul class='dropdown-menu'>
+					<li><a href='/student/list'>List of Students</a></li>
+					<li role='separator' class='divider'></li>
+					<li><a href='/student/create'>Create a Student Profile</a></li>
+					</ul>
+				<li role='presentation' class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown'
+					href='#' role='button' aria-haspopup='true' aria-expanded='false'>Faculty<span class='caret'></span></a>
+					<ul class='dropdown-menu'>
+					<li><a href='/faculty/list'>List of Faculty</a></li>
+					<li role='separator' class='divider'></li>
+					<li><a href='/faculty/create'>Create a Faculty Profile</a></li>
+					</ul>
+				<li role='presentation' class='dropdown active'><a class='dropdown-toggle' data-toggle='dropdown'
+					href='#' role='button' aria-haspopup='true' aria-expanded='false'>Institutions<span class='caret'></span></a>
+					<ul id='institution-menu' class='dropdown-menu'>
+						<li><a href='/university/create'>Universities</a></li>
+						<li><a href='/college/create'>Colleges</a></li>
+						<li><a href='/department/create'>Departments</a></li>
+						<li role='separator' class='divider'></li>
+						<li><a href='/university/create#university'>Create a University Profile</a></li>
+						<li><a href='/college/create#college'>Create a College Profile</a></li>
+						<li><a href='/department/create#department'>Create a Department Profile</a></li>
+					</ul>
+				</li>
+				<li role='presentation'><a href='/upload'>Upload</a></li>
+			</ul>
+			<!-- NAVIGATION END note the extra container DIV -->
+				<div class="row-fluid">
+					<div class="col-sm-8 blog-main">
+						<div class="blog-post">
+							<h2 class="blog-post-title">New Faculty Profile:</h2>
+							<hr>
+							<div id='form-divider'>
+								<form id='university' class='univ_form' method='post' action='/api/university'>
+									<h4>New University:</h4>
+									Name:
+									<div align='center'><input type='text' name='name' placeholder='University Name' required /></div>
+									<h6>*Full University Name</h6><br>
+									Address:
+									<div align='center'><input type='text' name='address' placeholder='Address' /></div><br>
+									Acronym:
+									<div align='center'><input type='text' name='initials' placeholder='Initials/Acronym'/></div>
+									<h6>*i.e. PUP, UST, FEU</h6><br>
+									<div align='center'><input type='submit' value='Submit'></input></div>
+								</form>
+							</div>
+								<br>
+								<br>
+								<br>
+								<hr>
+								<br>
+								<br>
+								<br>
+							<div id='form-divider'>
+								<form id='college' class='college_form' method='post' action='/api/college'>
+									<h4>New College:</h4>
+									University:
+									<div align='center'><select class='chosen-select' id='select_univ' name='university' required></select></div><br>
+									Name:
+									<div align='center'><input type='text' name='name' placeholder='College Name' required /></div><br>
+									<div align='center'><input type='submit' value='Submit'></input></div>
+								</form>
+							</div>
+								<br>
+								<br>
+								<br>
+								<hr>
+								<br>
+								<br>
+								<br>
+							<div id='form-divider'>
+								<form id='department' class='college_form' method='post' action='/api/department'>
+									<h4>New Department:</h4>
+									College:
+									<div align='center'><select class='chosen-select' id='select_coll' name='college' required></select></div><br>
+									Name:
+									<div align='center'><input type='text' name='name' placeholder='Department Name' required /></div><br>
+									Chairperson:
+									<div align='center'><select class='chosen-select' id='select_adviser' name='chairperson'></select></div><br>
+									<div align='center'><input type='submit' value='Submit'></input></div>
+								</form>
+							</div>
+							<br>
+							<br>
+						  </div><!-- /.blog-post -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<script type="text/javascript" src="/static/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/script.js"></script>
+    <script type="text/javascript" src="/chosen/chosen.jquery.min.js"></script>
+</body>
+</html>
